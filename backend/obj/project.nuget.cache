@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "HdhRhylgJ8c=",
+  "success": true,
+  "projectFilePath": "/home/hunter/Code/pnw-controls/backend/backend.csproj",
+  "expectedPackageFiles": [
+    "/home/hunter/.nuget/packages/microsoft.aspnetcore.openapi/9.0.9/microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
+    "/home/hunter/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512",
+    "/home/hunter/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.9/microsoft.aspnetcore.app.ref.9.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}
