@@ -1,3 +1,5 @@
+using PnW.Query;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
