@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import MilButton from './Button';
 
 function App() {
   const [data, setData] = useState({ name1: String, mil1: {}, name2: String, mil2: {} });
@@ -13,17 +14,16 @@ function App() {
 return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-8">City Data</h1>
-
-      {/* Two cities side-by-side */}
-      <div className="flex flex-col lg:flex-row gap-8">
+      <MilButton />
+      <div className="flex flex-col md:flex-row gap-30">
         {/* City 1 */}
         <div className="flex-1">
-          <h2 className="text-2xl font-bold mb-4">
-            City 1 ID: {data.name1}
+          <h2 className="text-2xl font-bold mb-4 whitespace-nowrap overflow-x-auto">
+            City 1: <span className="whitespace-nowrap">{data.name1}</span>
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-1">
             {Object.entries(data.mil1).map(([key, value], i) => (
-              <div key={i} className="bg-white shadow-md rounded-xl p-4">
+              <div key={i} className="bg-black shadow-md rounded-xl p-4">
                 <h2 className="text-xl font-semibold">{key}</h2>
                 <p className="text-gray-500">
                   {value !== null ? value : "null"}
@@ -36,11 +36,11 @@ return (
         {/* City 2 */}
         <div className="flex-1">
           <h2 className="text-2xl font-bold mb-4">
-            City 2 ID: {data.name2}
+            City 2: {data.name2}
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-1">
             {Object.entries(data.mil2).map(([key, value], i) => (
-              <div key={i} className="bg-white shadow-md rounded-xl p-4">
+              <div key={i} className="bg-black shadow-md rounded-xl p-4">
                 <h2 className="text-xl font-semibold">{key}</h2>
                 <p className="text-gray-500">
                   {value !== null ? value : "null"}
