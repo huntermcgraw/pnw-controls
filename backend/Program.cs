@@ -32,28 +32,29 @@ if (string.IsNullOrEmpty(apiKey))
 }
 
 const string targetCityId = "1332734";
-Dictionary<string, int?> mil = null;
+const string targetCityId2 = "1332849";
+Dictionary<string, int?> mil1 = null;
+Dictionary<string, int?> mil2 = null;
+string name1 = null;
+string name2 = null;
 
 try
 {
     Console.WriteLine($"Fetching data for City ID: {targetCityId}...");
 
     var api = new API(apiKey);
-    City data = await api.GetQuery<City>(targetCityId, ["name", "barracks", "factory", "hangar", "drydock"]);
-    if (data != null)
-    {
-        mil = data.GetMilitary();
-    }
-    else
-    {
-        Console.WriteLine("Failed to retrieve city data or City object was null.");
-    }
+    City city1 = await api.GetQuery<City>(targetCityId, ["name", "barracks", "factory", "hangar", "drydock"]);
+    name1 = city1.name;
+    mil1 = city1.GetMilitary();
+    City city2 = await api.GetQuery<City>(targetCityId2, ["name", "barracks", "factory", "hangar", "drydock"]);
+    name2 = city2.name;
+    mil2 = city2.GetMilitary();
 }
 catch (Exception ex)
 {
     Console.WriteLine($"An error occurred: {ex.Message}");
 }
 
-app.MapGet("/cityinfo", () => Results.Json(mil));
+app.MapGet("/cityinfo", () => new { name1 = name1, mil1 = mil1, name2 = name2, mil2 = mil2 });
 
 app.Run();

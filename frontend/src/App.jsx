@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ name1: String, mil1: {}, name2: String, mil2: {} });
 
   useEffect(() => {
     fetch("http://localhost:5141/cityinfo")
@@ -10,21 +10,47 @@ function App() {
       .catch((err) => console.error(err));
   }, []);
 
-  return (
-  <div className="p-6">
-  <h1 className="text-2xl font-bold mb-4">City Data</h1>
+return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-8">City Data</h1>
 
-  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {Object.entries(data).map(([key, value], i) => (
-      <div key={i} className="bg-white shadow-md rounded-xl p-4">
-        <h2 className="text-xl font-semibold">{key}</h2>
-        <p className="text-gray-500">
-          {value !== null ? value : "null"}
-        </p>
+      {/* Two cities side-by-side */}
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* City 1 */}
+        <div className="flex-1">
+          <h2 className="text-2xl font-bold mb-4">
+            City 1 ID: {data.name1}
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {Object.entries(data.mil1).map(([key, value], i) => (
+              <div key={i} className="bg-white shadow-md rounded-xl p-4">
+                <h2 className="text-xl font-semibold">{key}</h2>
+                <p className="text-gray-500">
+                  {value !== null ? value : "null"}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* City 2 */}
+        <div className="flex-1">
+          <h2 className="text-2xl font-bold mb-4">
+            City 2 ID: {data.name2}
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {Object.entries(data.mil2).map(([key, value], i) => (
+              <div key={i} className="bg-white shadow-md rounded-xl p-4">
+                <h2 className="text-xl font-semibold">{key}</h2>
+                <p className="text-gray-500">
+                  {value !== null ? value : "null"}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    ))}
-  </div>
-</div>
+    </div>
   );
 }
 
