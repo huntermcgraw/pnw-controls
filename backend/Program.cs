@@ -32,6 +32,7 @@ if (string.IsNullOrEmpty(apiKey))
 }
 
 const string targetCityId = "1332734";
+Dictionary<string, int?> mil = null;
 
 try
 {
@@ -41,13 +42,7 @@ try
     City data = await api.GetQuery<City>(targetCityId, ["name", "barracks", "factory", "hangar", "drydock"]);
     if (data != null)
     {
-        Console.WriteLine("\n--- Data Retrieved ---");
-        Console.WriteLine($"Name: {data.name}");
-        Dictionary<string, int?> mil = data.GetMilitary();
-        foreach (KeyValuePair<string, int?> pair in mil)
-        {
-            Console.WriteLine($"{pair.Key}: {pair.Value}");
-        }
+        mil = data.GetMilitary();
     }
     else
     {
@@ -58,17 +53,7 @@ catch (Exception ex)
 {
     Console.WriteLine($"An error occurred: {ex.Message}");
 }
-            
-app.MapGet("/weatherforecast", () =>
-{
-    var forecasts = new[]
-    {
-        new { date = DateTime.Now, temperatureC = 23, summary = "Sunny" },
-        new { date = DateTime.Now.AddDays(1), temperatureC = 19, summary = "Cloudy" },
-        new { date = DateTime.Now.AddDays(2), temperatureC = 17, summary = "Rainy" }
-    };
 
-    return Results.Json(forecasts);
-});
+app.MapGet("/cityinfo", () => Results.Json(mil));
 
 app.Run();
