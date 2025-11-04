@@ -1,5 +1,6 @@
 using PnW.Query;
 using PnW.Classes;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,15 +23,15 @@ app.MapGet("/", () => "Hello World!");
 
 Env.Load();
 
-            string? apiKey = Environment.GetEnvironmentVariable("PNW_API_KEY");
+string? apiKey = Environment.GetEnvironmentVariable("PNW_API_KEY");
 
-            if (string.IsNullOrEmpty(apiKey))
-            {
-                Console.WriteLine("ERROR: PNW_API_KEY environment variable is not set. Cannot run the application.");
-                return;
-            }
+if (string.IsNullOrEmpty(apiKey))
+{
+    Console.WriteLine("ERROR: PNW_API_KEY environment variable is not set. Cannot run the application.");
+    return;
+}
 
-            const string targetCityId = "1332734";
+const string targetCityId = "1332734";
 
 try
 {
