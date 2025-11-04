@@ -1,7 +1,0 @@
-bin/
-obj/
-
-appsettings.Development.json
-appsettings.Secret.json
-secrets.json
-.env
