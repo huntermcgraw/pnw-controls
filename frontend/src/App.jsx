@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MilButton from './Button';
+import CityIDsForm from './cityComponent';
 
 function App() {
   const [data, setData] = useState({ name1: String, mil1: {}, name2: String, mil2: {} });
@@ -14,7 +14,7 @@ function App() {
 return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-8">City Data</h1>
-      <MilButton />
+      <CityIDsForm />
       <div className="flex flex-col md:flex-row gap-30">
         {/* City 1 */}
         <div className="flex-1">
