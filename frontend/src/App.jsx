@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
-import CityIDsForm from './cityComponent';
+import CityIDsForm from './CityComponent';
 
 function App() {
-  const [data, setData] = useState({ name1: String, mil1: {}, name2: String, mil2: {} });
+  const [data, setData] = useState({ name1: '', mil1: {}, name2: '', mil2: {} });
 
-  useEffect(() => {
-    fetch("http://localhost:5141/cityinfo")
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.error(err));
-  }, []);
+  const handleData = (newData) => {
+    if (newData && newData.name1) {
+      setData(newData);
+    }
+  };
 
-return (
+  return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-8">City Data</h1>
-      <CityIDsForm />
+      <CityIDsForm onDataSubmit={handleData}/>
       <div className="flex flex-col md:flex-row gap-30">
         {/* City 1 */}
         <div className="flex-1">
