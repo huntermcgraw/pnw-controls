@@ -39,9 +39,15 @@ app.MapPost("/cityinfo", async (ComparisonRequest request) =>
     try
     {
         var api = new API(apiKey);
-        City city1 = await api.GetQuery<City>(targetCityId, ["name", "barracks", "factory", "hangar", "drydock"]);
-        City city2 = await api.GetQuery<City>(targetCityId2, ["name", "barracks", "factory", "hangar", "drydock"]);
 
+        Task<City> city1Task = api.GetQuery<City>(targetCityId, ["name", "barracks", "factory", "hangar", "drydock"]);
+        Task<City> city2Task = api.GetQuery<City>(targetCityId2, ["name", "barracks", "factory", "hangar", "drydock"]);
+
+        await Task.WhenAll(city1Task, city2Task);
+
+        City city1 = city1Task.Result;
+        City city2 = city2Task.Result;
+        
         Dictionary<string, int?> mil1 = city1.GetMilitary();
         Dictionary<string, int?> mil2 = city2.GetMilitary();
 
